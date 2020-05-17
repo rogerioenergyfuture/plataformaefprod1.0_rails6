@@ -1,0 +1,440 @@
+
+ 
+ <%= render 'form', companypower: @companypower %>    
+
+    <div style="margin: 0px auto; width: 1033px; ">
+      
+    <h1 class="title_h1"></br>PROPOSTAS DE INOVAÇÃO</h1></br>
+        <div class="bg_filtros" style="padding:40px 100px;">
+
+          <div class="columns is-centered">
+            <div class="column is-50 content">
+
+            </br><div class="title1">FILTRAR</div></br>
+              <div class="columns">
+                <div class="column">
+                  <div class="title2">Status: <br /></div>
+                     <label class="checkbox1"><%=radio_button("status", "", '0', :class => 'checkbox_status')%> Todos</label> </br>
+	                 <label class="checkbox1"><%=radio_button("status", "", '1', :class => 'checkbox_status')%> Favoritos</label> </br>
+	                 <label class="checkbox1"><%=radio_button("status", "", '2', :class => 'checkbox_status')%> Avaliados</label> </br>
+	                 <label class="checkbox1"><%=radio_button("status", "", '3', :class => 'checkbox_status')%> Não Avaliados</label></br>
+                </div>
+                <div class="column">
+                  <div class="title2">Ordenação: <br /></div>
+                    <label class="checkbox1"><input type="radio" name="ordem" class="checkbox_ordem" value="0"> Maior para menor</label></br>
+                    <label class="checkbox1"><input type="radio" name="ordem" class="checkbox_ordem" value="1"> Menor para maior</label>
+                </div>
+                
+                <div class="column">
+                  <div class="title2">Categorias: <br /></div>
+                     <label class="checkbox1"><input type="radio" name="categorias[]" class="checkbox_categorias" value="0"> Todas</label></br>
+                     <label class="checkbox1"><input type="radio" name="categorias[]" class="checkbox_categorias" value="1"> Renováveis e Storage</label></br>
+                     <label class="checkbox1"><input type="radio" name="categorias[]" class="checkbox_categorias" value="2"> Smart Grid and Meter</label></br>
+                     <label class="checkbox1"><input type="radio" name="categorias[]" class="checkbox_categorias" value="3"> Gestão Energética</label>
+
+                </div>
+                
+                <div class="column">
+                  <div class="title2"><br /></div>
+                    <label class="checkbox1"><input type="radio" type="checkbox" name="categorias[]" class="checkbox_categorias" value="4"> Serviços ao Cliente de Distribuição</label></br>
+                    <label class="checkbox1"><input type="radio" type="checkbox" name="categorias[]" class="checkbox_categorias" value="5"> Performance e Digitalização</label></br>
+                    <label class="checkbox1"><input type="radio" type="checkbox" name="categorias[]" class="checkbox_categorias" value="6"> Novos Negócios em Geração e Transmissão</label>
+                </div>                
+
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </br>
+
+
+<% user_normals=UserNormal.where(companypower_id:@companypower[0].id)%>
+<% @projects.each do |project| %>
+
+            <div class="card">
+                <div class="card-content retangulo_shadow2">
+
+                                          <% evaluations=Evaluation.where(:user_normal_id=>user_normals,project_id:project.id)%>
+                                          <% statusav=false%>
+
+                                            <% evaluations.each do |evaluation| %>
+                                              <% if evaluation.statusbloqueio=="Bloqueado"%>
+                                                 <% statusav=true%>
+
+                                                 <div class="coluna1">
+
+                                                      <div class="label1">
+                                                         <p> Avaliação concluída </p>
+                                                      </div>
+
+                                                      <div class="label2">
+                                                         <%usern=UserNormal.find(evaluation.user_normal_id)%>
+                                                         <p> Avaliado por <strong><%=usern.name%></strong> </p>
+                                                      </div>
+
+                                                  </div>
+                                                  <div class="coluna2" style="text-align: right;">
+
+                                                        <div class="label_nota">
+                                                          <p> <%=evaluation.notaavalicacao%> </p>
+                                                        </div>
+
+                                                        <% if evaluation.favorito%>
+                                                            <i id="btn-favorito" class="fas fa-star"></i>
+                                                        <%end%>
+
+                                                  </div>
+
+
+                                                <%break%>
+                                              <% end %>
+                                            <% end %>
+
+
+                                               <% if statusav==false %>
+
+                                                      <div class="label0navaliado">
+                                                        <p>Não Avaliado</p>
+                                                      </div>
+
+                                               <% end %>
+
+                            <div style="height: 25px; clear: both;">&nbsp;</div>
+                            <h4 class="title_h4"><%=project.name%></h4>
+
+                            <div style="height: 25px; clear: both;">&nbsp;</div>
+                            <p class="texto_projetos"><strong>Resumo do projeto: </strong><%=project.resumoppf%></p>
+
+                            <div style="height: 25px; clear: both;">&nbsp;</div>
+                            <a href="/projects/<%=project.id%>"><button class="button1" >VER DETALHES</button></a>
+                            <div style="height: 20px; clear: both;">&nbsp;</div>
+
+
+            </div>
+        </div>
+        <div style="height: 20px;">&nbsp;</div>
+<% end %>
+
+<br /><br />
+
+<%= will_paginate @projects, renderer: BulmaPagination::Rails %>
+
+<br /><br />
+
+</div>
+</div>
+<script>
+
+
+$(document).ready(function(){
+
+  var status    = '<%= params[:status]%>';
+  var ordem     = '<%= params[:ordem]%>';
+  var categoria = '<%= params[:categoria]%>';
+
+  $("input.checkbox_status[value='"+status+"']").prop("checked", true);
+  $("input.checkbox_ordem[value='"+ordem+"']").prop("checked", true);
+  $("input.checkbox_categorias[value=" +categoria+ "]").prop("checked", true);
+  
+  $('.checkbox_status').change(function(){
+          var val = $(this).val();
+          $(location).attr('href', '/welcome/allpages?other=projetos&status='+val+'&ordem='+ordem+'&categoria='+categoria+'');
+  });
+
+  $('.checkbox_ordem').change(function(){
+            $(location).attr('href', '/welcome/allpages?other=projetos&status='+status+'&ordem='+$(this).val()+'&categoria='+categoria+'');
+  });
+
+  $('.checkbox_categorias').change(function(){
+             $(location).attr('href', '/welcome/allpages?other=projetos&status='+status+'&ordem='+ordem+'&categoria='+$(this).val()+'');
+  });
+});
+
+  
+</script>
+
+<style>
+
+.avatar-img {
+   margin-top:2px;
+   height: 28px;
+}
+
+.corpo{
+   background-color: #FF0000;
+}
+
+.bg_filtros {
+  border-radius: 5px;
+  background-color: #011e41;
+}
+
+.retangulo_shadow2 {
+    border-radius: 5px;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ffffff;
+    padding:60px 100px 60px 100px;
+    min-height: 400px!important;
+}
+
+ .texto_projetos {
+          margin:15px 0 15px 0;
+          font-size: 13px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 21px;
+          letter-spacing: normal;
+          text-align: left;
+          color: #7c7c7c;
+ }
+
+#btn-favorito {
+   position: relative;
+   left: 5;
+   top:5;
+   font-size: 32px;
+   width: 35.1px;
+   height: 35.1px;
+   cursor: pointer;
+   color:#773dbd!important;
+ }
+
+
+.card {
+ box-shadow: 0!important;
+}
+.texto1 {
+color: #7c7c7c!important;
+}
+
+
+.coluna1 {
+ width:73%;
+ float:left;
+ height: 40px;
+}
+
+.coluna2 {
+ width:24%;
+ float:right;
+ height: 40px;
+}
+.title0{  
+  margin-top: 40px;
+  margin-left:20px;
+  width: 990px;
+  height: 23px;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.22;
+  text-align: left;
+  color: #0071ce;  
+}
+
+.title_h4 {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #011e41;
+ }
+
+.title1{
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  text-align: left;
+  color: #3bd4ae;
+  margin-left:0px;
+}  
+
+.title2{
+  width: 178px;
+  height: 29px;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: 2px;
+  text-align: left;
+  color: #ffffff;
+  margin-left:0px;
+} 
+.checkbox1{
+    font-size: 10px;
+    line-height: 2;
+    text-align: left;
+    color: #ffffff;
+    margin-top:5px;
+}
+
+.checkbox2{
+  font-family: Montserrat;
+  font-size: 11px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  margin-left:-20px;
+  color: #ffffff;
+}
+
+.title3{
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: 2.25px;
+  text-align: left;
+  color: #011e41;  
+}  
+
+
+.button2{
+  width: 283px;
+  height: 50px;
+  background-color: #0071ce;  
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal; 
+  line-height: 1.29;
+  letter-spacing: 1.75px;
+  text-align: center;
+  color: #ffffff;  
+  padding:20px 40px 40px 40px;
+}
+
+.button1{
+  cursor: pointer;
+  padding: 8px 0;
+  margin: auto;
+  width: 300px;
+  height: 55px;
+  border-radius: 5px;
+  background-color: #0071ce;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  text-align: center;
+  color: #ffffff;
+}
+
+
+.label_nota {
+  width: 32px;
+  height: 22px;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.22;
+  letter-spacing: 2.25px;
+  text-align: center;
+  color: #011e41;
+  margin-right: 0px;
+  margin-left: 35px;
+  margin-top: 5px;
+  float: right;
+}
+
+.label0navaliado {
+  background-color: #fdd4db;
+  margin-left:0px;
+  margin-right:60px;
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  text-align: center;
+  padding:3px 0px 3px 0px;
+}
+
+.label0navaliado p {
+  color: #FB5474;
+  font-size: 11px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  padding:5px;
+  z-index:9;
+}
+
+.label1 {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #ccf4eb;
+  padding:3px 0px 3px 0px;
+  float:left;
+  margin-right:10px;
+}
+
+.label1 p {
+  font-size: 11px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center;
+  color: #3bd4ae;
+  padding:5px;
+  z-index:9;
+}
+
+.label2 {
+    margin-left:5px;
+    margin-right:60px;
+    width: 215px;
+    height: 30px;
+    opacity: 0.25;
+    border-radius: 5px;
+    background-color: #c0c7d0;
+    text-align: center;
+    padding:3px 0px 3px 0px;
+    float:left;
+}
+
+.label2 p {
+  font-size: 11px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  color: #011e41;
+  padding:5px;
+  z-index:9;
+}
+
+.imgfav{
+ display: inline-block; 
+ margin-left:20px;
+ width: 30px;
+ height: 30px;
+}
+
+  
+</style>

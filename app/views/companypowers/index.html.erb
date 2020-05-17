@@ -1,0 +1,137 @@
+<%- model_class = Companypower -%>
+<div class="page-header">
+  <h3><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h3>
+</div>
+
+ <!-- Left side -->
+  <div class="level-left">
+    <div class="level-item">
+         <p>   
+         <class="level-item"><a href="/companypowers/new" class="button is-success">Nova</a> 
+         <class="level-item"><a href="/welcome/index?other=clique" class="button is-success">Dashboard</a>   
+         </p>
+    </div>
+  </div>
+
+
+ <!-- Left side -->
+  <div class="level-left">
+ <p class="level-item">  
+ 
+  <%= search_form_for @q do |f| %>  
+    
+
+  <%= f.label :name_cont %>
+  <%= f.search_field :name_cont %>  
+  
+  <%= f.select :combinator, [['E','and'],['OU','or']] %></br>
+
+  <%= f.label :category_eq %>
+  <%= f.select :category_eq, Companypower.categories.to_a.map { |w| [w[0].humanize, w[1]] },{:include_blank=> "Selecione a Categoria"} %>  
+      
+  <%= f.select :combinator, [['E','and'],['OU','or']] %></br>
+
+  <%= f.label :status_eq %>
+  <%= f.select :status_eq, Companypower.statuses.to_a.map { |w| [w[0].humanize, w[1]] },{:include_blank=> "Selecione o Status"} %>   
+   
+  <%= f.select :combinator, [['E','and'],['OU','or']] %>    
+  <%= f.label :id_eq%>
+  <%= f.search_field :id_eq %>   
+  <%= f.submit %>
+  
+<% end %>         
+ </p>         
+      
+</div>
+    
+
+        Listagem de Companypowers da plataforma.
+         <% if Companypower.count==1 %> 
+          <class="text-muted m-b-30"><%=Companypower.count%> registro
+         <% else %> 
+          <class="text-muted m-b-30"><%=Companypower.count%> registros
+         <% end %> 
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :name) %></th>
+      <th><%= sort_link(@q, :category) %></th>
+      <th><%= sort_link(@q, :status) %></th>
+      <th>Avaliados</th>
+      <th>Não Avaliados</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @companypowers.each do |companypower| %>
+      <tr>
+        <%user_normals0=UserNormal.where(companypower_id:companypower.id)%>
+        <%user_normals=user_normals0.where(typerole:1)%> 
+        <% usern=[] %>
+        <%user_normals.each do|u|%>
+         <% usern.push(u.id)%>
+        <%end%>        
+        <%@avaliados=Evaluation.where('user_normal_id IN (?) and statusbloqueio=?', usern,1)%>        
+        <%@tavcat=Project.joins(:evaluations).where('user_normal_id IN (?)', usern)%>
+        <%@avcat=Project.joins(:evaluations).where('evaluations.statusbloqueio=?',1).where('user_normal_id IN (?)', usern)%> 
+        <% if usern.count!=0 %>
+         <%tavcat=@tavcat.count/usern.count%>
+        <% else %>
+         <%tavcat=0%>
+        <% end %>
+        <td><%= link_to companypower.name, companypower_path(companypower), :class => '' %> </td>
+        <td><%= companypower.category%></td>
+        <td><%= companypower.status %></td>
+        <td><%=@avcat.count  %></td>
+        <td><%=tavcat-@avcat.count  %></td>        
+        <td><%= link_to t('.show', :default => t("helpers.links.show")),
+                companypower_path(companypower), :class => 'btn btn-default btn-sm' %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_companypower_path(companypower), :class => 'btn btn-default btn-sm' %></td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+ <%= will_paginate @companypowers %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

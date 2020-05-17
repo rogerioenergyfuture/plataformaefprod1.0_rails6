@@ -1,0 +1,72 @@
+<h2>Alteração de Senha</h2>
+<%= yield :head %>
+<%= form_with(model: @user, remote: true) do |f| %>
+<div class="container is-widescreen">
+<label class="label">DADOS GERAIS</label>    
+
+</br>
+
+  <label class="label"><%= f.label :email %></label>
+  <div class ='form-control'>
+   <%= f.text_field :email, :class => 'input' ,'required' => 'true','data-minlength'=>'3', 
+   'data-error' => "Ops. Email inválido ou muito pequeno. " %>
+  </div>
+  </br> 
+
+ 
+   <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  
+
+ 
+<div class="field is-grouped">
+  <p class="control">
+    <%= f.button :'Atualizar Senha' , class: 'button is-primary'%>   
+  </p>
+  <p class="control">
+    <a href="/users" class="button is-info">
+      Cancel
+    </a>
+  </p>
+</div>
+  
+  
+  
+  
+  
+  
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

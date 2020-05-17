@@ -1,0 +1,117 @@
+<%- model_class = UserNormal -%>
+
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">UserNormals</h4> </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li class="active"><a href="/user_normals">UserNormals</a></li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                
+
+ <!-- Left side -->
+  <div class="level-left">
+ <p class="level-item">  
+  <%@companypowers=Companypower.all %>
+  <%= search_form_for @q do |f| %>  
+    
+
+  <%= f.label :name_cont %>
+  <%= f.search_field :name_cont %>      
+      
+  <%= f.select :combinator, [['E','and'],['OU','or']] %>
+
+  <%= f.label :typerole_eq %>
+  <%= f.select :typerole_eq, UserNormal.typeroles.to_a.map { |w| [w[0].humanize, w[1]] },{:include_blank=> "Selecione o tipo"} %> 
+
+  <%= f.select :combinator, [['E','and'],['OU','or']] %>    
+  <%= f.label :companypower_id_eq%>
+  <%= f.collection_select(:companypower_id_eq, @companypowers, :id, :name,{:include_blank=> "Selecione a Concessionária"}, { :class => 'form-control' })%>
+
+  <%= f.submit %>
+  
+<% end %>         
+ </p>         
+      
+</div>
+                
+                
+                <!-- /row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h3 class="box-title m-b-0">Listagem de todas as usernormals da plataforma.</h3>
+                            <% if UserNormal.count==1 %> 
+                             <p class="text-muted m-b-30"><%=UserNormal.count%> registro</p>
+                            <% else %> 
+                             <p class="text-muted m-b-30"><%=UserNormal.count%> registros</p>
+                            <% end %> 
+                            
+                            <div class="form-inline padding-bottom-15">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <%= link_to t('.new', :default => t("helpers.links.new")),
+                                            new_user_normal_path,
+                                            :class => 'btn btn-primary btn-sm' %>    
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                            
+                            <div class="table-responsive">
+                                <table id="myTable" class="table table-striped">
+                                <thead>
+                                  <tr>
+                                   <th><%= sort_link(@q, :name, model_class.human_attribute_name(:name), default_order: :asc)%></th>
+                                   <th><%= sort_link(@q, :typerole, model_class.human_attribute_name(:typerole), default_order: :asc)%></th>                                   
+                                   <th><%= sort_link(@q, :companypower, model_class.human_attribute_name(:companypower), default_order: :asc)%></th>
+                                   <th>quant login</th>  
+                                   <th>último login</th>                           
+                                   <th>total avs</th>
+                                   <th>Show</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                <% @user_normals.each do |user_normal| %>
+                                  <tr>
+                                    <%user=User.find(user_normal.user_id)%>
+                                    <%companypower=Companypower.find(user_normal.companypower_id)%>                                     
+                                   <td><%= user_normal.name %></td>
+                                   <td><%= user_normal.typerole %></td>
+                                   <td><%= user_normal.companypower.name %></td>
+                                   <td><%= user.sign_in_count %></td>
+                                   <% if user.last_sign_in_at!=nil%>
+                                     <td><%=(user.last_sign_in_at).strftime("%d-%m-%Y %H:%M:%S") %></td>
+                                   <% else %>
+                                     <td> Não logou </td>
+                                   <% end %>
+                                   <% if user_normal.typerole=="avaliador"%>
+                                   <%evaluation=Evaluation.where(user_normal_id:user_normal.id)%>
+                                   <td><%=evaluation.count%></td>      
+                                   <%end%>
+
+
+                                   
+                                    <td>
+                                      <%= link_to t('.show', :default => t("helpers.links.show")),
+                                                  user_normal_path(user_normal), :class => 'btn btn-default btn-sm' %>
+     
+                                    </td>
+                                  </tr>
+                                  <div id="current_user_normal"> </div>
+                                <% end %>
+                              </tbody>
+                            </table>
+                            
+                    </div>
+                </div>
+         
+                
+<%= will_paginate @user_normals %>
+

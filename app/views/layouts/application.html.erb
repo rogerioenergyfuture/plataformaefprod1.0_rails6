@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+  <head>
+     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <meta charset="UTF-8"/>
+    <meta content="noindex" name="robots"/>
+    <title> Energy Future - Avaliação de Projetos </title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" rel="stylesheet"></link>
+
+    <%=  favicon_link_tag 'Nef-favicon32x32.png', rel: 'shortcut icon', type: 'image/png', sizes: '32x32' %>
+    <%=  favicon_link_tag 'Nef-favicon16x16.png', rel: 'shortcut icon', type: 'image/png', sizes: '16x16' %>
+    <%=  favicon_link_tag 'Nef-favicon.ico', rel: 'shortcut icon', type: 'image/vnd.microsoft.icon', sizes: '16x16' %>
+
+    <link rel="stylesheet" href="http://hilios.github.io/jQuery.countdown/css/syntax.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600&display=swap" rel="stylesheet">
+
+   
+
+
+    <script src="https://kit.fontawesome.com/d3b11a69ce.js" crossorigin="anonymous"></script>
+
+  <style>
+
+    body,html {
+        margin:0;
+        font-family: 'Montserrat', sans-serif!important;
+        min-height: 1250px;
+        background-image: linear-gradient(169deg, rgba(0, 113, 206, 0.02) -3%, rgba(119, 61, 189, 0) 18%, rgba(59, 212, 174, 0.02) 31%, rgba(0, 113, 206, 0.1) 50%, rgba(119, 61, 189, 0.08));
+    }
+
+    .logo_topo {
+      width: 220px;
+      margin-top: -40px;
+      margin-left: -10px;
+    }
+
+    .navbar {
+        width: 100%;
+        padding: 20px;
+        background-color: #f4f6f8;
+        height: 100px;
+    }
+
+    .is-disable{
+        pointer-events: none;
+        opacity: .65;
+    }
+
+    .navbar-brand {
+        width: 250px;
+    }
+
+    a.navbar-item-nav {
+      font-size: 14px;
+      font-weight: bold;
+      color: #0071ce!important;
+      float:left;
+      margin-top: 25px;
+      margin-left: 35px;
+      width:150px;
+      padding-top: 4px;
+    }
+
+    a.navbar-item-nav.active,a.navbar-item-nav:hover {
+      color: #0071ce!important;
+    }
+    .navbar-end:hover {
+       background:none!important;
+    }
+
+    .navbar-link {
+          font-size: 14px;
+          font-weight: bold;
+          line-height: 18px;
+          text-align: right;
+          color: #0071ce!important;
+          text-transform: uppercase;
+    }
+    .navbar-link:hover {
+       color: #0071ce!important;
+    }
+
+    .aqua-marine{
+        width: 182px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        background-color: #3bd4ae;
+    }
+
+    .footer p {
+      color: #0071ce!important;
+      font-size: 16px;
+    }
+
+    .title_h1 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #0071ce;
+      margin: 25px 0 25px 0;
+    }
+
+   .title_h2 {
+          font-size: 18px;
+          font-weight: bold;
+          color: #3bd4ae;
+          margin:25px 0 25px 0;
+   }
+
+   .title_h3 {
+          font-size: 18px;
+          font-weight: bold;
+          color: #3bd4ae;
+          margin:20px 0 20px 0;
+   }
+
+   .texto1{
+        font-size: 16px;
+        text-align: left;
+        line-height: 1.5;
+        color: #7c7c7c;
+        margin:15px 0 15px 0;
+        text-align:left;
+    }
+
+    .link1{
+      margin-top: 40px;
+      margin-left: 0px;
+      width: 990px;
+      height: 45px;
+      font-family: Montserrat;
+      font-size: 13px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      text-align: left;
+      color: #7c7c7c;
+      text-decoration: underline;
+    }
+
+   .margin-left {
+        margin-left:90px;
+   }
+
+   strong {
+    color: #011e41;
+   }
+
+   .hr {
+     height: 45px;
+     border-top: 1px #ccc solid;
+  }
+
+  .retangulo_shadow {
+    height: 497px;
+    border-radius: 5px;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ffffff;
+    padding:45px 25px 45px 25px;
+  }
+
+ .button1:hover {
+    opacity: 0.9!important;
+    cursor: pointer;
+  }
+
+  .footer {
+        background-color: #fafafa;
+        padding: 3rem 1.5rem 6rem;
+        height: 40px;
+  }
+
+</style>
+</head>
+<body>
+
+
+<% if user_signed_in? %>
+ <% if current_user.typeclasse=='User_Normal' %>
+     <%if  params[:controller]=='welcome' %>
+       <%if params[:action]=='allpages' %>
+        <%= render :partial => "allpages" %>
+       <%elsif params[:action]=='index' %>
+        <%= render :partial => "sobre" %>
+       <%end%> 
+     <% else %>
+      <%= yield %> 
+     <% end %>
+
+ <% elsif current_user.typeclasse=='User_Startup' %> <!--Se está normal_user --> 
+
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+         Plataforma Energy Future
+      </h1>
+      <%= link_to('Sair',destroy_user_session_path(), method: :delete) %>
+      <strong style="color: $000;"> Olá,</strong> <%= current_user.email.to_s %>
+    <%= yield %>      
+    </div>
+  </section>
+<% end %> 
+<% else %>
+   <%= yield %>
+<% end %>
+
+</div>
+<% if user_signed_in? %>
+      <footer class="footer">
+          <p class="subtitle has-text-centered">Dúvidas? <br />suporte@energyfuture.com.br</p>
+      </footer>
+<% end %>
+
+      <script>
+      $(document).ready(function(){
+
+                var link = '<%= params[:other]%>';
+
+                if(link == 'projetos' || link == 'visaogeral'){
+                    $('.'+link).addClass('active');
+                }else{
+                    $('.sobre').addClass('active');
+                }
+
+       });
+    </script>
+
+  </body>
+</html>

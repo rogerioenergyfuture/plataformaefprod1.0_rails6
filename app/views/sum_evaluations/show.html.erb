@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Kind:</strong>
+  <%= @sum_evaluation.kind %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @sum_evaluation.deadline %>
+</p>
+
+<%= link_to 'Edit', edit_sum_evaluation_path(@sum_evaluation) %> |
+<%= link_to 'Back', sum_evaluations_path %>

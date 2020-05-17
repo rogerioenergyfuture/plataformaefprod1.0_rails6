@@ -1,0 +1,425 @@
+<%- model_class = Project -%>
+
+<%= render 'welcome/form', project: @project %>
+<% userstartup=UserStartup.find(@project.user_startup_id)%>
+
+<div style="margin: 0px auto; width: 1033px; ">
+
+    <br /><i class="fas fa-caret-left"></i> &nbsp;&nbsp;&nbsp;<a class="link1" href="/welcome/allpages?other=projetos&&status=0&&ordem=0&&categoria=0">Voltar para Projetos</a>
+      
+    <br /><h1 class="title_h1">DETALHES PROJETO</h1></br>
+    
+       <div class="columns">
+         <div class="column">
+                <h2 class="title_h2">Categoria:</h2>
+                                <div class="section1">
+                                     <p><%=@project.categoriappf%></p>
+                                </div>
+         </div>
+         <div class="column">
+                <h2 class="title_h2">Estágio da cadeia de inovação:</h2>
+                         <div class="section1">
+                                <p><%=@project.estagiocadeiainovacaoppf%></p>
+                         </div>
+         </div>
+      </div>
+      </br></br>   
+
+       <h2 class="title_h2">Título:</h2>
+       <div class="section1">
+                <p style="text-transform: uppercase!important;"><%=@project.name%></p>
+       </div>
+          
+      </br></br>
+      
+      <div class="columns">
+         <div class="column">
+                <h2 class="title_h2">Executora:</h2>
+                                <div class="section1">
+                                     <p><%=userstartup.nomefantasiappf%></p>
+                                </div>
+         </div>
+         <div class="column">
+                <h2 class="title_h2">Enquadramento:</h2>
+                         <div class="section1">
+                                <p><%=userstartup.enquadramentoppf%></p>
+                         </div>
+         </div>
+      </div>
+      </br></br>      
+      
+     
+      <h2 class="title_h2">Resumo do Projeto:</h2>
+       <div class="section1">
+             <p><%=@project.resumoppf%></p>
+       </div>
+          
+      </br></br>
+
+      <h2 class="title_h2">Detalhes do Projeto:</h2>
+          <div class="section1">
+              <p><%=@project.detalhesppf%></p>
+          </div>
+      </br></br>
+      
+      <h2 class="title_h2">Descrição do Serviço ou Produto:</h2>
+          <div class="section1">
+              <p><%=@project.descricaoppf%></p>
+          </div>
+      </br></br>      
+
+      
+      <div class="columns">
+         <div class="column">
+                <h2 class="title_h2">Dor que pretende resolver:</h2>
+                                <div class="section1">
+                                     <p><%=@project.qualdorpretenderesolverppf%></p>
+                                </div>
+         </div>
+         <div class="column">
+                <h2 class="title_h2">Investimento necessário:</h2>
+                         <div class="section1">
+                                <p><%=@project.qualeaquantianecessariapararealizacaoppf%></p>
+                         </div>
+         </div>
+      </div>
+      </br></br>  
+      
+      
+       <div class="columns">
+         <div class="column">
+                <h2 class="title_h2">Marcos atingidos pelo Projeto:</h2>
+                                <div class="section1">
+                                     <p><%=@project.quaismarcosjaforamatingidospeloprojetoppf%></p>
+                                </div>
+         </div>
+         <div class="column">
+                <h2 class="title_h2">Estimativa de tempo de conclusão do projeto:</h2>
+                         <div class="section1">
+                                <p><%=@project.qualeaestimativadetempoparaaconclusaoppf%></p>
+                         </div>
+         </div>
+      </div>
+      </br></br>   
+      
+      <h2 class="title_h2">Maior dificuldade do projeto:</h2>
+          <div class="section1">
+              <p><%=@project.qualamaiordificuldadequeoseuprojetoenfrentahojeppf%></p>
+          </div>
+      </br></br>         
+      
+
+      </br></br>   
+       <div class="columns">
+         <div class="column">
+                <h2 class="title_h2">Possui concorrentes no mercado?</h2>
+                                <div class="section1">
+                                      <%if @project.asuasolucaojatemconcorrentesnomercadoppf==true%>
+                                      <p>Sim</p>
+                                      <% else %>
+                                      <p>Não</p>
+                                      <% end %>
+                                </div>
+         </div>
+         <div class="column">
+                <h2 class="title_h2">Quantidade de concorrentes:</h2>
+                         <div class="section1">
+                                <p><%=@project.quantosconcorrentesppf%></p>
+                         </div>
+         </div>
+      </div>
+
+
+       <div class="columns">
+         <div class="column">
+                <h2 class="title_h2">O projeto já recebeu algum tipo de aporte?</h2>
+                                <div class="section1">
+                                     <p><%=@project.projetojarecebeualgumaporteppf%></p>
+                                </div>
+         </div>
+         <div class="column">
+                <h2 class="title_h2">Instituições que deram aporte:</h2>
+                         <div class="section1">
+                                <p><%=@project.paportesquaisinstituicoes%></p>
+                         </div>
+         </div>
+      </div>
+      </br></br> 
+      
+      
+      <div class="columns">
+         <div class="column">
+                <h2 class="title_h2">Valor total de aportes recebidos:</h2>
+                                <div class="section1">
+                                     <p><%=@project.qualvalortotaldosaportesrecebidosppf%></p>
+                                </div>
+         </div>
+         <div class="column">
+                <h2 class="title_h2">Profissionais atuantes no projeto:</h2>
+                         <div class="section1">
+                                <p><%=@project.quantidadedefuncionariosppf%></p>
+                         </div>
+         </div>
+      </div>
+      </br></br>        
+
+      
+      
+      <div class="columns">
+         <div class="column">
+                <h2 class="title_h2">A executora possuiu outros projetos de P&D?</h2>
+                                <div class="section1">
+                                     <p><%=userstartup.jparticipoudeoutrachamadadeprojetosdepdestartupsppf%></p>
+                                </div>
+         </div>
+         <div class="column">
+                <h2 class="title_h2">Pesquisa tecnologias na área de sua atividade?</h2>
+                         <div class="section1">
+                                <p><%=@project.pesquisatecnologiasnaareadesuaatividadeppf%></p>
+                         </div>
+         </div>
+      </div>
+      </br></br>  
+ 
+      
+
+
+
+      <div class="columns">
+         <div class="column">
+                <h2 class="title_h2">Pratica a Gestão de Propriedade Intelectual, Certificações e Patentes?</h2>
+                                <div class="section1">
+                                     <p><%=@project.adotapraticasdegestaoppf%></p>
+                                </div>
+         </div>
+         <div class="column">
+                <h2 class="title_h2">Avalia o impacto da inovação em clientes, fornecedores e empreendimentos parceiros?</h2>
+                         <div class="section1">
+                                <p><%=@project.avaliaoimpactodainovacaoppf%></p>
+                         </div>
+         </div>
+      </div>
+      </br></br>  
+      
+       <div class="columns">
+         <div class="column">
+                <h2 class="title_h2">Operação e gestão da Instituição estruturadas e bem definidas:</h2>
+                                <div class="section1">
+                                     <p><%=@project.processosdeoperacaoegestaoppf%></p>
+                                </div>
+         </div>
+         <div class="column">
+                <h2 class="title_h2">Define métricas quantitativas para aferir o resultado obtido com a inovação?</h2>
+                         <div class="section1">
+                                <p><%=@project.definemetricasquantitativasparaaferirppf%></p>
+                         </div>
+         </div>
+      </div>
+      </br></br>       
+
+       
+
+        <% evaluation=Evaluation.where(project_id:@project.id, user_normal_id:@user_normal.id)%>
+
+
+          <div class="columns">
+               <div class="column">
+                <%user_normals=UserNormal.where(companypower_id:@companypower[0].id)%>   
+                <% usern=[] %>
+                <%user_normals.each do|u|%>
+                 <% usern.push(u.id)%>
+               <%end%>
+               <% if @user_normal.typerole=='avaliador'%>
+                 <% @evaluation=Evaluation.find(evaluation[0].id)%>
+                 <%evaluations=Evaluation.where('statusbloqueio=? AND  project_id=? AND user_normal_id IN (?)',1,@project.id, usern)%>
+                   <% if evaluations.count==0%>
+                       <a href="/evaluations/<%=@evaluation.id%>/edit?other=01010101"><button class="button1"> AVALIAR PROJETO </button></a>
+                   <% elsif evaluations.count==1%>
+                       <%evaluation=Evaluation.where('statusbloqueio=? AND  project_id=? AND user_normal_id=?',1,@project.id, @user_normal.id)%>
+                       <%if evaluation.count==0%>
+                        <%evaluation=Evaluation.where('statusbloqueio=? AND  project_id=? AND user_normal_id IN (?)',1,@project.id, usern)%>
+                        <a href="/evaluations/<%=evaluation[0].id%>/edit?other=1111000"><button class="button1"> VER AVALIAÇÃO </button></a> 
+                       <% elsif evaluation.count==1%> 
+                        <a href="/evaluations/<%=@evaluation.id%>/edit?other=01010102"><button class="button1"> REAVALIAR PROJETO </button></a>
+                       <%end%>
+                   <% end %>
+                   
+                <% elsif @user_normal.typerole=='visualizador'%> 
+                  <%evaluations=Evaluation.where('statusbloqueio=? AND  project_id=? AND user_normal_id IN (?)',1,@project.id, usern)%>
+                   <%if evaluations.count==0%>
+                    <a href="/welcome/index?other=clique"><button class="button1"> FECHAR </button></a>
+                    <%elsif evaluations.count==1%>
+                        <%evaluation=Evaluation.where('statusbloqueio=? AND  project_id=? AND user_normal_id IN (?)',1,@project.id, usern)%>
+                        <a href="/evaluations/<%=evaluation[0].id%>/edit?other=1111000"><button class="button1"> VER AVALIAÇÃO </button></a>                     
+                   <%end%>       
+                <% end %>
+               </div>
+              
+               <div class="column" style="text-align: right;">
+                       
+                         
+                        <a href="/parte/<%=@project.tokenidppf%>.pdf" target="iframe_download"><button class="button is-danger is-outlined button1"> Download Apresentação</button></a>
+                          
+                       
+               </div>
+              
+            </div>
+
+</div>
+
+    </br></br>
+
+
+
+
+
+
+<style>
+
+.title_h2 {
+    color: #011e41!important;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #011e41;
+}
+
+.column-is-8{
+ font-family: Montserrat; 
+ font-weight: bold;
+ font-stretch: normal;
+ font-style: normal; 
+ color: #7c7c7c;
+ margin-left:10px;
+ text-align: left;
+ 
+}
+
+.section1{
+ background-color: #FFFFFF;
+ margin-left:0px;
+ padding:20px;
+}
+
+.section1 p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: left;
+  color: #7c7c7c;
+}
+
+
+.section2{
+ background-color: #F6F6F6;
+ margin-left:0px;
+ padding:20px;
+}
+  
+.title0{  
+  margin-top: 40px;
+  margin-left:140px;
+  width: 990px;
+  height: 23px;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.22;
+  text-align: left;
+  color: #0071ce;  
+}  
+  
+.title1 {
+  width: 178px;
+  height: 19px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  text-align: left;
+  color: #011e41;
+  margin-left:150px;
+}  
+
+.title2 {
+  width: 330px;
+  height: 19px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  text-align: left;
+  color: #011e41;
+  margin-left:150px;
+}  
+
+.title3 {
+  width: 330px;
+  height: 19px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  text-align: left;
+  color: #011e41;
+  margin-left:150px;
+}
+
+.title4 {
+  width: 350px;
+  height: 19px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  text-align: left;
+  color: #011e41;
+  margin-left:0px;
+}
+
+.title5 {
+  width: 400px;
+  height: 50px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  text-align: left;
+  color: #011e41;
+  margin-left:0px;
+}
+
+.button1{
+  cursor: pointer;
+  padding: 8px 0;
+  margin: auto;
+  width: 300px;
+  height: 55px;
+  border-radius: 5px;
+  background-color: #0071ce;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  text-align: center;
+  color: #ffffff;
+}  
+    
+  
+</style>

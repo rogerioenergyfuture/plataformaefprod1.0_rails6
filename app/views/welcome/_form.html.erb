@@ -1,0 +1,23 @@
+
+    <%= yield :head %>
+
+      <nav class="navbar"><div class="container">
+         <div class="navbar-brand">
+           <div id="logo"> <%= image_tag "Nlogo-ef-horizontal-fundo-claro.png", class: "avatar logo_topo" %> </div>
+           </div>
+           <div class="navbar-menu">
+             <div class="navbar-start">
+                <a class="navbar-item-nav sobre" href="/welcome/index">COMO VOTAR</a>
+                <a class="navbar-item-nav visaogeral" href="/welcome/allpages?other=visaogeral">VISÃO GERAL</a>
+                <a class="navbar-item-nav projetos" href="/welcome/allpages?other=projetos&status=0&ordem=0&categoria=0">PROJETOS</a>
+             </div>
+           </div>
+            <div class="navbar-end">
+             <%user_normal=UserNormal.where(user_id:current_user.id)%>    
+              <div class="navbar-item has-dropdown is-hoverable"><a class="navbar-link"><%= @companypower[0].name %></a>
+                <div class="navbar-dropdown"><a class="navbar-item"><%=user_normal[0].name%></a>
+                <a class="navbar-item"<%= link_to('Sair',destroy_user_session_path(), method: :delete) %> </a></div>
+              </div>
+        </div>
+      </nav>
+

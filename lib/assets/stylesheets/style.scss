@@ -1,0 +1,176 @@
+
+body { 
+        display: grid; 
+        min-height: 100px; 
+        background-color: #011e41;  
+  width: 1280px;
+  height: 768px;
+     } 
+
+
+ 
+ 
+ /* Bordered form */
+form {
+ border: 3px solid #f1f1f1;
+}
+
+
+
+/* Full-width inputs */
+input[type=password] {
+  /*width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;*/
+  margin-left: 65px;
+  width: 300px;
+  height: 55px;
+  border-radius: 5px;
+  border: solid 1px #b9b9b9;
+  background-color: #ffffff; 
+ 
+}
+
+input[type=email] {
+  margin-left: 65px;    
+  width: 300px;
+  height: 55px;
+  border-radius: 5px;
+  border: solid 1px #b9b9b9;
+  background-color: #ffffff;    
+ 
+}
+
+.lembrardados {
+  clear: both;  
+  margin-left: 10px;   
+  width: 107px;
+  height: 18px;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  text-align: left;
+  color: #7c7c7c;
+}
+
+
+.esqueceu {
+  clear: both;   
+  width: 134px;
+  height: 18px;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  text-align: center;
+  color: #7c7c7c;
+}
+
+
+.duvidas {
+  clear: both;     
+  width: 196px;
+  height: 30px;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Set a style for all buttons */
+.button {
+  /*background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;*/
+  cursor: pointer;
+  padding: 8px 0;
+  margin: auto;
+  width: 300px;
+  height: 55px;
+  border-radius: 5px;
+  background-color: #0071ce;
+  
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: 1.75px;
+  text-align: center;
+  color: #ffffff;  
+  
+  
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+
+.boxgabi{
+  margin: auto;  
+  width: 450px;
+  height: 330px;
+  border: 1px;
+  border-radius: 5px;
+  background-color: #ffffff;     
+}
+
+/* Avatar image */
+img.avatar {
+  width: 45%;
+  border-radius: 10%;
+}
+
+/* Add padding to containers */
+.formprinc {
+ /* padding: 16px;*/
+  width: 1280px;
+  height: 800px;
+  background-color: #011e41;  
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}

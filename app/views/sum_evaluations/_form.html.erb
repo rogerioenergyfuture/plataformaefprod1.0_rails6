@@ -1,0 +1,27 @@
+<%= form_with(model: sum_evaluation, local: true) do |form| %>
+  <% if sum_evaluation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sum_evaluation.errors.count, "error") %> prohibited this sum_evaluation from being saved:</h2>
+
+      <ul>
+      <% sum_evaluation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :kind %>
+    <%= form.number_field :kind %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline %>
+    <%= form.text_field :deadline %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

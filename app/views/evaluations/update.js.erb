@@ -1,0 +1,14 @@
+var qtdErrors = <%= @evaluation.errors.count%>
+if (qtdErrors>0){
+ $.notify("Ocorreu um erro!", "error");
+}else {
+swal("Avaliação Concluída com Sucesso!", "Clique no botão!", "success")
+   setTimeout(function(){
+    window.location.replace("/welcome/allpages?other=projetos&&status=0&&ordem=0&&categoria=0");
+   },3000);
+}
+
+
+
+ 
+ 

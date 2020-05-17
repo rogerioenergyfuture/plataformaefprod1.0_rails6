@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  kind: 1
+  deadline: 
+
+two:
+  kind: 1
+  deadline: 

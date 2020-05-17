@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sum Evaluations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Kind</th>
+      <th>Deadline</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sum_evaluations.each do |sum_evaluation| %>
+      <tr>
+        <td><%= sum_evaluation.kind %></td>
+        <td><%= sum_evaluation.deadline %></td>
+        <td><%= link_to 'Show', sum_evaluation %></td>
+        <td><%= link_to 'Edit', edit_sum_evaluation_path(sum_evaluation) %></td>
+        <td><%= link_to 'Destroy', sum_evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sum Evaluation', new_sum_evaluation_path %>

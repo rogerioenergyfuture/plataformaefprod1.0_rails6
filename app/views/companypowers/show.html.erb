@@ -1,0 +1,25 @@
+<%- model_class = Companypower -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @companypower.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
+  <dd><%= @companypower.category %></dd>  
+  
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @companypower.status %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:responsibleemail) %>:</strong></dt>
+  <dd><%= @companypower.responsibleemail %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:pipefyid) %>:</strong></dt>
+  <dd><%= @companypower.pipefyid %></dd>    
+   
+  
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              companypowers_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_companypower_path(@companypower), :class => 'btn btn-default' %>

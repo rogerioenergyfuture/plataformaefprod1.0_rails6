@@ -1,0 +1,71 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+
+<% if @user_normal[0].typerole=='admin' %>
+  <%= link_to 'New User', new_user_path %>
+<% end %>  
+
+
+ <!-- Left side -->
+  <div class="level-left">
+ <p class="level-item">   
+  <%= search_form_for @q do |f| %>  
+    
+
+  <%= f.label :email_cont %>
+  <%= f.search_field :email_cont %>      
+      
+  <%= f.select :combinator, [['E','and'],['OU','or']] %>
+
+  <%= f.label :typeclasse_eq %>
+  <%= f.select :typeclasse_eq, User.typeclasses.to_a.map { |w| [w[0].humanize, w[1]] },{:include_blank=> "Selecione o tipo"} %> 
+    
+   
+
+  <%= f.submit %>
+  
+<% end %>         
+ </p>         
+      
+</div>
+
+
+        Listagem de Usuários da plataforma.
+         <% if User.count==1 %> 
+          <class="text-muted m-b-30"><%=User.count%> registro
+         <% else %> 
+          <class="text-muted m-b-30"><%=User.count%> registros
+         <% end %> 
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :email) %></th>
+      <th><%= sort_link(@q, :typeclasse) %></th>
+      <th><%= sort_link(@q, :last_sign_in_at) %></th>   
+      <th><%= sort_link(@q, :sign_in_count) %></th> 
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.email, user_path(user), :class => '' %> </td>
+        <td><%= user.typeclasse %></td>
+        <% if user.last_sign_in_at!=nil%>
+         <td><%=(user.last_sign_in_at).strftime("%d-%m-%Y %H:%M:%S") %></td>
+        <% else %>
+         <td> Não logou </td>
+        <% end %>
+        <td><%= user.sign_in_count %></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table
+
+
+
+
+ <%= will_paginate @users %>   

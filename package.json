@@ -1,0 +1,7 @@
+{
+  "name": "plataformaef",
+  "private": true,
+  "dependencies": {
+    "notify.js": "^0.0.3"
+  }
+}

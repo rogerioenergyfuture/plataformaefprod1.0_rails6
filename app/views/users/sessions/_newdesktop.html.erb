@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+  <head>
+     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <meta charset="UTF-8"/>
+    <meta content="noindex" name="robots"/>
+    <title> Energy Future - Avaliação de Projetos </title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" rel="stylesheet"></link>
+
+    <%=  favicon_link_tag 'Nef-favicon32x32.png', rel: 'shortcut icon', type: 'image/png', sizes: '32x32' %>
+    <%=  favicon_link_tag 'Nef-favicon16x16.png', rel: 'shortcut icon', type: 'image/png', sizes: '16x16' %>
+    <%=  favicon_link_tag 'Nef-favicon.ico', rel: 'shortcut icon', type: 'image/vnd.microsoft.icon', sizes: '16x16' %>
+
+    <link rel="stylesheet" href="http://hilios.github.io/jQuery.countdown/css/syntax.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600&display=swap" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+
+
+    <script src="https://kit.fontawesome.com/d3b11a69ce.js" crossorigin="anonymous"></script>
+
+
+  <style>
+
+    body,html {
+        margin:0;
+        font-family: 'Montserrat', sans-serif!important;
+        min-height: 1250px;
+        background-color: #011e41;
+    }
+
+    #logo {
+        width: 450px;
+        height: 50px;
+        margin: 90px auto;
+     }
+
+     #logo img {
+        width:390px;
+     }
+
+    .box {
+          width: 680px;
+          height: 470px;
+          border-radius: 5px;
+          background-color: #ffffff;
+          margin:15px auto;
+   }
+
+   .texto1 {
+        font-size: 16px;
+        text-align: left;
+        line-height: 1.5;
+        color: #7c7c7c;
+        margin:15px 0 15px 0;
+        text-align:left;
+    }
+
+    .link1{
+      margin-top: 40px;
+      margin-left: 0px;
+      width: 990px;
+      height: 45px;
+      font-family: Montserrat;
+      font-size: 13px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      text-align: left;
+      color: #7c7c7c;
+      text-decoration: underline;
+    }
+
+   .margin-left {
+        margin-left:90px;
+   }
+
+form {
+ border: 0px solid #f1f1f1;
+}
+
+
+
+input[type=password], input[type=email] {
+  padding: 12px 20px;
+  margin-left: 55px;
+  width: 502px;
+  height: 55px;
+  border-radius: 5px;
+  border: solid 1px #b9b9b9;
+  background-color: #ffffff;
+}
+
+
+.lembrardados {
+  clear: both;
+  margin-left: 10px;
+  width: 107px;
+  height: 18px;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  text-align: left;
+  color: #7c7c7c;
+}
+
+
+.esqueceu {
+  clear: both;
+  width: 134px;
+  height: 18px;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  text-align: center;
+  color: #7c7c7c;
+}
+
+
+.duvidas {
+  clear: both;
+  width: 196px;
+  height: 30px;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+.button1{
+  cursor: pointer;
+  padding: 8px 0;
+  margin: auto;
+  width: 502px;
+  height: 55px;
+  border-radius: 5px;
+  background-color: #0071ce;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  text-align: center;
+  color: #ffffff;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+#user_liberar[:label] {
+  width: 680px;
+  height: 75px;
+  font-family: Montserrat;
+  font-size: 8px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  text-align: left;
+  color: #7c7c7c;
+}
+
+</style>
+</head>
+<body>
+
+
+                   <div id="logo"> <center> <%= image_tag "logonlogo-ef-horizontal-fundo-escuro.jpg" %> </center> </div>
+
+                            <div class="box">
+                              <center>
+                             <div class="message" style="color:red"></div> 
+                               <%= form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>
+                                    </br>
+                                  
+                                    
+                                    <div class="field">
+                                        <div class="control">
+                                            <%= f.email_field :email, autofocus: "true", class: "input", placeholder: "Usuário" %>
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="control">
+                                            <%= f.password_field :password, autocomplete: "off", class: "input", placeholder: "Senha"  %>
+                                        </div>
+                                    </div>
+                                    
+    </br>
+    <div class="field">
+      <div class="control"></div>
+      <%= f.label class: "checkbox" do %>
+        <%= f.check_box :liberar %>
+        Li e aceito que todas as informações acessadas nesta plataforma</br>
+        são confidenciais e não devem ser compartilhadas a terceiros,</br>
+        respeitando as regras de Propriedade Intelectual conferidas a cada projeto,</br>
+        inclusive à própria chamada do Energy Future.
+      <% end %>
+    </div></br>
+                     
+                                    
+                                    <button class="button1">ENTRAR </button>
+                                    </br></br>
+
+                                    <%end%>
+                                 </center>
+                            </div>
+                    
+
+</body>
+</html>

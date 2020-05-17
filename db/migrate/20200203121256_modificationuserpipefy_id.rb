@@ -1,0 +1,5 @@
+class ModificationuserpipefyId < ActiveRecord::Migration[5.2]
+  def change
+    add_column :users, :pipefyid,:integer 
+  end
+end

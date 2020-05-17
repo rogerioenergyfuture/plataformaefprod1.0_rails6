@@ -1,0 +1,43 @@
+<%= form_with(model: user_normal, remote: true) do |form| %>
+  <% if user_normal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_normal.errors.count, "error") %> prohibited this user_normal from being saved:</h2>
+
+      <ul>
+      <% user_normal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <label class="label"><%=form.label :status%></label>
+  <div class="form-control">
+     <%= form.select(:status, UserNormal.statuses.keys.map {|status| [status.titleize,status]},{include_blank: false}, :class => 'form-control' )%>
+    </br>
+  </div> 
+  
+    <label class="label"><%=form.label :TypeRole%></label>
+  <div class="form-control">
+     <%= form.select(:typerole, UserNormal.typeroles.keys.map {|typerole| [typerole.titleize,typerole]},{include_blank: false}, :class => 'form-control' )%>
+    </br>
+  </div>
+  
+  <div class="field">
+    <%= form.label :user %>
+    <%= form.collection_select(:user_id, @users, :id, :email, {include_blank: false}, { :class => 'form-control' })%>
+  </div>  
+  <div class="field">
+    <%= form.label :companypower %>
+    <%= form.collection_select(:companypower_id, @companypowers, :id, :name, {include_blank: false}, { :class => 'form-control' })%>
+  </div> 
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

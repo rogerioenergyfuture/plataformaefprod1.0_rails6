@@ -1,0 +1,8 @@
+var qtdErrors = <%= @user_normal.errors.count%>
+if (qtdErrors>0){
+ $.notify("Ocorreu um erro!", "error");
+}else {
+ $.notify("Cadastrado com Sucesso!","sucess");
+ document.getElementById('user_normal_name').value="";
+ }
+

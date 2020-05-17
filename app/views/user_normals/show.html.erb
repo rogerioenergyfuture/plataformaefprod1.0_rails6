@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user_normal.name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @user_normal.status %>
+</p>
+
+<p>
+  <%user=User.find(@user_normal.user_id)%>
+  <strong>User:</strong>
+  <%= user.email %>
+</p>
+
+<%= link_to 'Destroy', @user_normal, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<%evaluations=Evaluation.where(user_normal_id:@user_normal.id)%>
+
+
+                            <div class="table-responsive">
+                                <table id="myTable" class="table table-striped">
+                                <thead>
+                                  <tr>
+                                   <th>Name</th>
+                                   <th>Categoria</th>
+                                   <th>ID</th>
+                                   <th>Nota</th>
+                                   <th>Favorito</th>
+                                   <th>Resetar Av</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                <% evaluations.each do |evaluation| %>
+                                  <tr>
+                                  <%project=Project.where(id:evaluation.project.id)%>
+                                   <td><%=project[0].name.truncate(40)%></td>
+                                   <td><%=project[0].categoriappf%></td>
+                                   <td><%= evaluation.id %></td>
+                                   <td><%= evaluation.notaavalicacao %></td>
+                                   <td><%= evaluation.favorito %></td>
+                                   <% if evaluation.statusbloqueio=='Bloqueado'%>
+                                   <td><a href="/user_normals/resetavaliacao/<%=evaluation.id%>?other=<%=@user_normal.id%>" class="button is-danger">AV</a></td> 
+                                   <% else %>
+                                   <td>Sem Av </td>
+                                   <%end%>
+                                   </tr>
+                                  <div id="current_user_normal"> </div>
+                                <% end %>
+                              </tbody>
+                            </table>
+                            
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+<%= link_to 'Edit', edit_user_normal_path(@user_normal) %> |
+<%= link_to 'Back', user_normals_path %>
+<%@user=User.find(@user_normal.user_id) %> 
+<a href="/users/accountaltsenha/<%=@user.id%>" class="button is-success">Alterar Senha</a> 

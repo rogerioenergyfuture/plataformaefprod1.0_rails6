@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  kind: 1
+  project: 
+  user_normal: 
+  sum_avalicao: 
+
+two:
+  kind: 1
+  project: 
+  user_normal: 
+  sum_avalicao: 

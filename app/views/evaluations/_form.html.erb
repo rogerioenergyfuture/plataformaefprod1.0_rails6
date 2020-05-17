@@ -1,0 +1,1241 @@
+
+
+<%= form_with(model: @evaluation, remote: true) do |f| %>
+<%= render '/welcome/form', companypower: @companypower%>
+
+<div class="modal" id="modal3">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">AVALIAÇÂO DA EXECUTORA</p>
+      <button class="delete botao_modal" aria-label="close"></button>
+    </header>
+
+    <section class="modal-card-body">
+    <p><br /><br />
+                    O objetivo é avaliar a capacidade da executora em entregar a solução proposta, de acordo com os fins pretendidos e a qualidade esperada.
+
+                    Neste sentido, as perguntas direcionadas à avaliação são: a executora possui competência técnica e gerencial para executar bem o projeto? A equipe envolvida possui a capacitação necessária para a execução do escopo proposto? A executora possui experiência prévia na execução de projetos que comprovem sua capacidade? </p>
+                     <br /><br /></section>
+
+    <footer class="modal-card-foot">
+      <button class="button1 is-success botao_modal">Entendi!</button>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" id="modal1">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">AVALIAÇÃO DA OPORTUNIDADE</p>
+      <button class="delete botao_modal" aria-label="close"></button>
+    </header>
+
+    <section class="modal-card-body">
+    <p><br/><br/> O objetivo é avaliar a capacidade do projeto de resolver um problema real do setor, bem como a relevância e a magnitude desse problema. No caso de projetos de cunho científico, a análise do projeto o preenchimento da proposta de uma lacuna relevante e o avanço no estado da arte.
+
+                     Assim, pretende-se avaliar as respostas às seguintes perguntas: há clareza no problema exposto? O problema é relevante? Qual é o valor gerado ao cliente, caso o problema seja resolvido? Quantos clientes devem ser impactados? Qual é o tamanho do mercado para a solução proposta? </p>
+       <br/><br/></section>
+
+    <footer class="modal-card-foot">
+      <button class="button1 is-success botao_modal">Entendi!</button>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" id="modal2">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">AVALIAÇÂO DA SOLUÇÃO</p>
+      <button class="delete botao_modal" aria-label="close"></button>
+    </header>
+
+    <section class="modal-card-body">
+
+           <p><br /><br />O objetivo é avaliar a viabilidade técnica e econômica, assim como a razoabilidade de execução do projeto quanto ao escopo, prazo e custo. A análise de projetos de P&D leva em consideração a coerência do método proposto em suas soluções para os desafios tecnológicos e científicos.
+
+              O que se pretende, portanto, responder é: a solução proposta endereça, de forma eficaz, o problema apresentado? Essa solução é (ou pode se tornar) viável tecnicamente e economicamente? As barreiras e desafios tecnológicos e/ou científicos podem ser vencidos com a solução apresentada? Prazo, custo e escopo do projeto são coerentes e razoáveis? </p>
+           <br/><br/></section>
+
+    <footer class="modal-card-foot">
+      <button class="button1 is-success botao_modal">Entendi!</button>
+    </footer>
+  </div>
+</div>
+
+ <div style="margin: 0px auto; width: 1033px; ">
+
+    <br /><i class="fas fa-caret-left"></i> &nbsp;&nbsp;<a class="link1" href="/welcome/allpages?other=projetos&&status=0&&ordem=0&&categoria=0">Voltar para Projetos</a>
+
+     <br /><h1 class="title_h1">FICHA DE AVALIAÇÃO</h1>
+
+     <h2 class="title_h2"></h2></br>
+
+          <div class="section1">
+            <div class="column">
+                   <p style="text-transform: uppercase!important; width:520px;"><strong><%=@project.name%></strong</p>
+            </div>  
+            <div class="column">
+                <div class="box_aval">
+                    <div class="bandeja">
+                      <div class="title5">PONTUAÇÃO FINAL</div></br>
+                      <% if @evaluation.notaavalicacao =='0' %>
+                       <div class="title7" id="pontgeral1">0.0</div>
+                       <% else %>
+                       <div class="title7" id="pontgeral1"><%=@evaluation.notaavalicacao%></div>
+                       <%end%>
+                    </div>
+                    <div class="bandeja">
+                       <div class="title5">DESTACAR PROJETO</div></br>
+                        <i class="far fa-star" id="btn-favorito"></i>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+        <%= f.hidden_field :favorito %>
+
+        <h2 class="title_h2">Resumo do Projeto:</h2>
+                          <div class="section1">
+                                <p><%=@project.resumoppf%></p>
+                          </div>
+
+
+        <h2 class="title_h2">Detalhes do Projeto:</h2>
+                          <div class="section1">
+                                <p><%=@project.detalhesppf%></p>
+                          </div>
+
+
+        <div class="pre_titulo">
+                <p class="pre1">Avalie o projeto descrito acima de acordo com os critérios abaixo:</p>
+                <p class="pre2">A escala é de 1 a 5, sendo 1 a pontuação mínima e 5 a máxima.</p>
+        </div>
+
+        </br></br>
+
+       <div class="section1 retangulo_shadow">
+          <div class="columns is-left">
+            <div class="column is-10">
+              <p class="title_pp"><%=@evaluation.pergunta1%></p>
+              <a class="btn-inter-pergunta1 modal-button" data-target="modal" aria-haspopup="true" id="perg_1">?</a>
+
+                <div class="has-text-centered box_respostas container">
+                  <div class="columns is-multiline">
+
+                    <div class="column is-4 is-2-desktop">
+                       <a id="p1nt1" class="round-button" onclick="p1nt1click(this)">1</a>
+                    </div>
+                    <div class="column is-4 is-2-desktop">
+                       <a id="p1nt2" class="round-button" onclick="p1nt2click(this)">2</a>
+                    </div>
+                    <div class="column is-4 is-2-desktop">
+                       <a id="p1nt3" class="round-button" onclick="p1nt3click(this)">3</a>
+                    </div>
+                    <div class="column is-4 is-2-desktop">
+                       <a id="p1nt4" class="round-button" onclick="p1nt4click(this)">4</a>
+                    </div>
+                    <div class="column is-4 is-2-desktop">
+                       <a id="p1nt5" class="round-button" onclick="p1nt5click(this)">5</a>
+                    </div>
+                    <%= f.hidden_field :notapergunta1 %>
+
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    
+     </br> </br>
+
+    <div class="section1 retangulo_shadow">
+              <div class="columns is-left">
+                <div class="column is-10">
+                  <p class="title_pp"><%=@evaluation.pergunta2%></p>
+                  <a class="btn-inter-pergunta1 modal-button" data-target="modal" aria-haspopup="true" id="perg_2">?</a>
+
+                    <div class="has-text-centered box_respostas container">
+                      <div class="columns is-multiline">
+                        <div class="column is-4 is-2-desktop">
+                           <a id="p2nt1" class="round-button" onclick="p2nt1click(this)">1</a>
+                        </div>
+                        <div class="column is-4 is-2-desktop">
+                           <a id="p2nt2" class="round-button" onclick="p2nt2click(this)">2</a>
+                        </div>
+                        <div class="column is-4 is-2-desktop">
+                           <a id="p2nt3" class="round-button" onclick="p2nt3click(this)">3</a>
+                        </div>
+                        <div class="column is-4 is-2-desktop">
+                           <a id="p2nt4" class="round-button" onclick="p2nt4click(this)">4</a>
+                        </div>
+                        <div class="column is-4 is-2-desktop">
+                           <a id="p2nt5" class="round-button" onclick="p2nt5click(this)">5</a>
+                        </div>
+                        <%= f.hidden_field :notapergunta2 %>
+                     </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+ </br> </br>
+
+        <div class="section1 retangulo_shadow">
+               <div class="columns is-left">
+                 <div class="column is-10">
+                   <p class="title_pp"><%=@evaluation.pergunta3%></p>
+                   <a class="btn-inter-pergunta1 modal-button" data-target="modal" aria-haspopup="true" id="perg_3">?</a>
+
+                           <div class="has-text-centered box_respostas container">
+                              <div class="columns is-multiline">
+                                <div class="column is-4 is-2-desktop">
+                                   <a id="p3nt1" class="round-button" onclick="p3nt1click(this)">1</a>
+                                </div>
+                                <div class="column is-4 is-2-desktop">
+                                   <a id="p3nt2" class="round-button" onclick="p3nt2click(this)">2</a>
+                                </div>
+                                <div class="column is-4 is-2-desktop">
+                                   <a id="p3nt3" class="round-button" onclick="p3nt3click(this)">3</a>
+                                </div>
+                                <div class="column is-4 is-2-desktop">
+                                   <a id="p3nt4" class="round-button" onclick="p3nt4click(this)">4</a>
+                                </div>
+                                <div class="column is-4 is-2-desktop">
+                                   <a id="p3nt5" class="round-button" onclick="p3nt5click(this)">5</a>
+                                </div>
+                                 <%= f.hidden_field :notapergunta3 %>
+                           </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+ </br> </br>
+
+      <div class="section1">
+                <div class="columns is-left">
+                  <div class="column is-10">
+                    <p class="title_pp">COMENTÁRIOS DO(A) AVALIADOR(A):</p>
+                    <br />
+                    <%= f.text_area(:comments, size: '108x8',class:'textarea') %>
+
+                  </div>
+                </div>
+      </div>
+      </br> </br>
+          <% if @user_normal.typerole=='avaliador'%>
+            <%if params[:other]=="01010101"%>
+              <%= f.submit 'Fazer Avaliação', :class => 'button1',disabled: true%>
+            <%elsif params[:other]=="01010102"%>
+              <%= f.submit 'Refazer Avaliação', :class => 'button1',disabled:false%>
+            <%elsif params[:other]=="1111000"%>
+               <a href="/welcome/index?other=clique"><button class="button1"> FECHAR </button></a>
+            <%end%>
+          <% elsif @user_normal.typerole=='visualizador'%>    
+             <a href="/welcome/index?other=clique"><button class="button1"> FECHAR </button></a>
+          <%end%>
+     </br></br>
+    </div>
+
+</div>    
+<%end%>
+
+
+
+
+
+<style>
+
+.retangulo_shadow {
+  padding: 40px!important;
+  height: 310px!important;
+}
+
+.box_respostas {
+    margin-left: 60px;
+    margin-top: 50px;
+    width: 990px!important;
+}
+
+.title_pp {
+  margin-top:30px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  text-align: left;
+  color: #7c7c7c;
+}
+
+.box_aval {
+  margin-top:-115px;
+  width: 384px;
+  height: 140px;
+  border-radius: 5px;
+  background-color: #dce3eb;
+  padding:15px 35px 15px 35px;
+  float:right;
+}
+
+.bandeja {
+  width: 120px;
+  height: 95px;
+  padding:10px;
+  float:left;
+  margin-left:30px;
+}
+
+
+.title_h2 {
+    color: #011e41!important;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: left;
+}
+
+.section1{
+ margin-left:0px;
+ padding:20px;
+}
+
+.section1 p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: left;
+  color: #7c7c7c;
+}
+
+.pre_titulo {
+ margin-top: 70px;
+ height: 90px;
+ padding:20px 50px 20px 50px;
+ text-align:center;
+}
+
+.pre1{
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 27px;
+  color: #011e41;
+  margin:0;
+}
+.pre2 {
+  font-size: 16px;
+  font-weight: 500;
+   margin:0;
+}
+
+#btn-favorito {
+  position: relative;
+  left: 5;
+  top:5;
+  font-size: 39px;
+  width: 47.4px;
+  height: 45.1px;
+  cursor: pointer;
+  color:#773dbd!important;
+}
+
+#btn-favorito:hover {
+ opacity: 0.9;
+}
+
+
+.btn-inter-pergunta1{
+  position: relative;
+  left: 875px;
+  top:-25px;
+  background: #0971CC;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border:0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-family:Montserrat;  
+}
+
+.btn-inter-pergunta1:hover{
+background-color: #007bc5!important;
+color: white!important;
+}
+
+
+.round-button {
+  background: white;
+  text-align: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  border: solid 1px #7c7c7c;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: black;
+  font-weight: normal;
+  text-decoration: none;
+  color: #7c7c7c;
+}
+
+
+.btn-donate:hover {
+    background-color: #773dbd!important;
+    color:white!important;
+}
+
+
+.round-button:hover {
+    background-color: #773dbd!important;
+    color:white!important;
+}
+
+.corpo{
+   background-color: #FFFFFF;
+}
+
+
+
+  
+.title0{  
+  margin-top: 40px;
+  margin-left:140px;
+  width: 990px;
+  height: 23px;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.22;
+  letter-spacing: 2.25px;
+  text-align: left;
+  color: #0071ce;  
+}  
+  
+.title1 {
+  width: 178px;
+  height: 19px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: 2px;
+  text-align: left;
+  color: #011e41;
+  margin-left:150px;
+}  
+
+.title2 {
+  width: 178px;
+  height: 19px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: 2px;
+  text-align: left;
+  color: #011e41;
+  margin-left:150px;
+}  
+
+.title3 {
+  width: 178px;
+  height: 19px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: 2px;
+  text-align: left;
+  color: #011e41;
+  margin-left:150px;
+} 
+
+
+.title5{ 
+  width: 90px;
+  height: 30px;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: 1.2px;
+  text-align: left;
+  color: #011e41;
+  margin:auto;
+} 
+
+
+
+
+.title7{ 
+  width: 70px;
+  height: 30px;
+  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: 1.2px;
+  text-align: left;
+  color: #011e41;
+  margin:auto;
+    
+} 
+
+.title6{ 
+  width: 199px;
+  height: 19px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: 1.6px;
+  text-align: left;
+  color: #FFFFFF;
+  margin:auto;
+} 
+
+.title8{ 
+  width: 200px;
+  height: 100px;
+  font-family: Montserrat;
+  font-size: 35px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fb5373;
+  margin:auto;
+} 
+.card{
+background-color: #ffffff;
+}
+
+.button1{
+  cursor: pointer;
+  padding: 8px 0;
+  margin: auto;
+  width: 300px;
+  height: 55px;
+  border-radius: 5px;
+  background-color: #0071ce;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  text-align: center;
+  color: #ffffff;
+}
+
+.textarea{
+  width: 788px;
+  height: 150px;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #7c7c7c;  
+}
+</style>
+
+
+
+
+<script>
+$(document).ready(function(){
+
+$("#perg_1").click(function() {
+  $("#modal1").addClass("is-active");
+});
+
+$("#perg_2").click(function() {
+  $("#modal2").addClass("is-active");
+});
+
+$("#perg_3").click(function() {
+  $("#modal3").addClass("is-active");
+});
+
+$(".botao_modal").click(function(event) {
+  event.preventDefault();
+  $("#modal1,#modal2,#modal3").removeClass("is-active");
+});
+
+function favorito(){
+   if ($('#evaluation_favorito').val() == "false"){
+      $('#evaluation_favorito').val('false');
+      $('#btn-favorito').removeClass('fas').addClass('far');
+     }else{
+      $('#evaluation_favorito').val('true');
+      $('#btn-favorito').removeClass('far').addClass('fas');
+     }
+}
+
+function click_favorito(){
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){
+   if ($('#evaluation_favorito').val() == "false"){
+      $('#evaluation_favorito').val('true');
+      favorito();
+     }else{
+      $('#evaluation_favorito').val('false');
+      favorito();
+     }
+  }   
+}
+
+$('#btn-favorito').click(function(){ click_favorito(); });
+
+favorito();
+
+if($("#pontgeral1").text() == ''){
+        $("#pontgeral1").text('--');
+}
+
+});
+
+
+
+
+
+function p1nt1click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF';
+  document.getElementById('p1nt2').style.backgroundColor = "white"
+  document.getElementById('p1nt2').style.color = "black" 
+  document.getElementById('p1nt3').style.backgroundColor = "white"
+  document.getElementById('p1nt3').style.color = "black"  
+  document.getElementById('p1nt4').style.backgroundColor = "white"
+  document.getElementById('p1nt4').style.color = "black"  
+  document.getElementById('p1nt5').style.backgroundColor = "white"
+  document.getElementById('p1nt5').style.color = "black"   
+  document.getElementById("pontgeral1").innerHTML= 1;
+  document.getElementById('evaluation_notapergunta1').value = 1;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  }
+ }  
+}
+
+function p1nt2click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){  
+  document.getElementById('p1nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p1nt1').style.color = "#FFFFFF"  
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF'; 
+  document.getElementById('p1nt3').style.backgroundColor = "white"
+  document.getElementById('p1nt3').style.color = "black" 
+  document.getElementById('p1nt4').style.backgroundColor = "white"
+  document.getElementById('p1nt4').style.color = "black"  
+  document.getElementById('p1nt5').style.backgroundColor = "white"
+  document.getElementById('p1nt5').style.color = "black"
+  document.getElementById("pontgeral1").innerHTML= 2;
+  document.getElementById('evaluation_notapergunta1').value = 2;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;
+  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  } 
+ }  
+}
+
+function p1nt3click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){
+  document.getElementById('p1nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p1nt1').style.color = "#FFFFFF"  
+  document.getElementById('p1nt2').style.backgroundColor = "#773EBB"
+  document.getElementById('p1nt2').style.color = "#FFFFFF" 
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF'; 
+  document.getElementById('p1nt4').style.backgroundColor = "white"
+  document.getElementById('p1nt4').style.color = "black"  
+  document.getElementById('p1nt5').style.backgroundColor = "white"
+  document.getElementById('p1nt5').style.color = "black"  
+  document.getElementById("pontgeral1").innerHTML= 3;
+  document.getElementById('evaluation_notapergunta1').value = 3;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  }
+ } 
+}
+function p1nt4click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){  
+  document.getElementById('p1nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p1nt1').style.color = "#FFFFFF"  
+  document.getElementById('p1nt2').style.backgroundColor = "#773EBB"
+  document.getElementById('p1nt2').style.color = "#FFFFFF"  
+  document.getElementById('p1nt3').style.backgroundColor = "#773EBB"
+  document.getElementById('p1nt3').style.color = "#FFFFFF"  
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF'; 
+  document.getElementById('p1nt5').style.backgroundColor = "white"
+  document.getElementById('p1nt5').style.color = "black" 
+  document.getElementById("pontgeral1").innerHTML= 4;
+  document.getElementById('evaluation_notapergunta1').value = 4;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  }
+ } 
+}
+
+function p1nt5click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){
+  document.getElementById('p1nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p1nt1').style.color = "#FFFFFF"  
+  document.getElementById('p1nt2').style.backgroundColor = "#773EBB"
+  document.getElementById('p1nt2').style.color = "#FFFFFF"  
+  document.getElementById('p1nt3').style.backgroundColor = "#773EBB"
+  document.getElementById('p1nt3').style.color = "#FFFFFF"  
+  document.getElementById('p1nt4').style.backgroundColor = "#773EBB"
+  document.getElementById('p1nt4').style.color = "#FFFFFF" 
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF'; 
+  document.getElementById("pontgeral1").innerHTML= 5;
+  document.getElementById('evaluation_notapergunta1').value = 5;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  }
+ } 
+}
+
+function p2nt1click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){  
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF';
+  document.getElementById('p2nt2').style.backgroundColor = "white"
+  document.getElementById('p2nt2').style.color = "black" 
+  document.getElementById('p2nt3').style.backgroundColor = "white"
+  document.getElementById('p2nt3').style.color = "black"  
+  document.getElementById('p2nt4').style.backgroundColor = "white"
+  document.getElementById('p2nt4').style.color = "black"  
+  document.getElementById('p2nt5').style.backgroundColor = "white"
+  document.getElementById('p2nt5').style.color = "black" 
+  document.getElementById("pontgeral1").innerHTML= 1;
+  document.getElementById('evaluation_notapergunta2').value = 1;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  } 
+ }  
+}
+
+function p2nt2click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){  
+  document.getElementById('p2nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p2nt1').style.color = "#FFFFFF" 
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF';  
+  document.getElementById('p2nt3').style.backgroundColor = "white"
+  document.getElementById('p2nt3').style.color = "black"  
+  document.getElementById('p2nt4').style.backgroundColor = "white"
+  document.getElementById('p2nt4').style.color = "black"  
+  document.getElementById('p2nt5').style.backgroundColor = "white"
+  document.getElementById('p2nt5').style.color = "black"  
+  document.getElementById("pontgeral1").innerHTML= 2;
+  document.getElementById('evaluation_notapergunta2').value = 2;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  }
+ }
+}
+
+function p2nt3click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){  
+  document.getElementById('p2nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p2nt1').style.color = "#FFFFFF"  
+  document.getElementById('p2nt2').style.backgroundColor = "#773EBB"
+  document.getElementById('p2nt2').style.color = "#FFFFFF" 
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF';  
+  document.getElementById('p2nt4').style.backgroundColor = "white"
+  document.getElementById('p2nt4').style.color = "black"  
+  document.getElementById('p2nt5').style.backgroundColor = "white"
+  document.getElementById('p2nt5').style.color = "black"  
+  document.getElementById("pontgeral1").innerHTML= 3;
+  document.getElementById('evaluation_notapergunta2').value = 3;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  }
+ } 
+}
+function p2nt4click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){
+  document.getElementById('p2nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p2nt1').style.color = "#FFFFFF"  
+  document.getElementById('p2nt2').style.backgroundColor = "#773EBB"
+  document.getElementById('p2nt2').style.color = "#FFFFFF"  
+  document.getElementById('p2nt3').style.backgroundColor = "#773EBB"
+  document.getElementById('p2nt3').style.color = "#FFFFFF"  
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF';
+  document.getElementById('p2nt5').style.backgroundColor = "white"
+  document.getElementById('p2nt5').style.color = "black" 
+  document.getElementById("pontgeral1").innerHTML= 4;
+  document.getElementById('evaluation_notapergunta2').value = 4;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  } 
+ }  
+}
+
+function p2nt5click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){  
+  document.getElementById('p2nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p2nt1').style.color = "#FFFFFF"  
+  document.getElementById('p2nt2').style.backgroundColor = "#773EBB"
+  document.getElementById('p2nt2').style.color = "#FFFFFF"  
+  document.getElementById('p2nt3').style.backgroundColor = "#773EBB"
+  document.getElementById('p2nt3').style.color = "#FFFFFF"  
+  document.getElementById('p2nt4').style.backgroundColor = "#773EBB"
+  document.getElementById('p2nt4').style.color = "#FFFFFF"  
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF';
+  document.getElementById("pontgeral1").innerHTML= 5;
+  document.getElementById('evaluation_notapergunta2').value = 5;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  }
+ }  
+}
+
+function p3nt1click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){  
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF';
+  document.getElementById('p3nt2').style.backgroundColor = "white"
+  document.getElementById('p3nt2').style.color = "black" 
+  document.getElementById('p3nt3').style.backgroundColor = "white"
+  document.getElementById('p3nt3').style.color = "black"  
+  document.getElementById('p3nt4').style.backgroundColor = "white"
+  document.getElementById('p3nt4').style.color = "black"  
+  document.getElementById('p3nt5').style.backgroundColor = "white"
+  document.getElementById('p3nt5').style.color = "black"   
+  document.getElementById("pontgeral1").innerHTML= 1;
+  document.getElementById('evaluation_notapergunta3').value = 1;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  } 
+ }  
+}
+
+function p3nt2click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){  
+  document.getElementById('p3nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p3nt1').style.color = "#FFFFFF" 
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF'; 
+  document.getElementById('p3nt3').style.backgroundColor = "white"
+  document.getElementById('p3nt3').style.color = "black"  
+  document.getElementById('p3nt4').style.backgroundColor = "white"
+  document.getElementById('p3nt4').style.color = "black"  
+  document.getElementById('p3nt5').style.backgroundColor = "white"
+  document.getElementById('p3nt5').style.color = "black" 
+  document.getElementById("pontgeral1").innerHTML= 2;
+  document.getElementById('evaluation_notapergunta3').value = 2;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  }
+ } 
+}
+
+function p3nt3click(el) {
+    var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){
+  document.getElementById('p3nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p3nt1').style.color = "#FFFFFF"  
+  document.getElementById('p3nt2').style.backgroundColor = "#773EBB"
+  document.getElementById('p3nt2').style.color = "#FFFFFF" 
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF'; 
+  document.getElementById('p3nt4').style.backgroundColor = "white"
+  document.getElementById('p3nt4').style.color = "black"  
+  document.getElementById('p3nt5').style.backgroundColor = "white"
+  document.getElementById('p3nt5').style.color = "black" 
+  document.getElementById("pontgeral1").innerHTML= 3;
+  document.getElementById('evaluation_notapergunta3').value = 3;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  }
+ } 
+}
+function p3nt4click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){
+  document.getElementById('p3nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p3nt1').style.color = "#FFFFFF"  
+  document.getElementById('p3nt2').style.backgroundColor = "#773EBB"
+  document.getElementById('p3nt2').style.color = "#FFFFFF"  
+  document.getElementById('p3nt3').style.backgroundColor = "#773EBB"
+  document.getElementById('p3nt3').style.color = "#FFFFFF"  
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF';
+  document.getElementById('p3nt5').style.backgroundColor = "white"
+  document.getElementById('p3nt5').style.color = "black"  
+  document.getElementById("pontgeral1").innerHTML= 4;
+  document.getElementById('evaluation_notapergunta3').value = 4;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  }
+ } 
+}
+
+function p3nt5click(el) {
+  var parametro=<%=params[:other]%>;
+  if (parametro!=1111000){  
+  document.getElementById('p3nt1').style.backgroundColor = "#773EBB"
+  document.getElementById('p3nt1').style.color = "#FFFFFF"  
+  document.getElementById('p3nt2').style.backgroundColor = "#773EBB"
+  document.getElementById('p3nt2').style.color = "#FFFFFF"  
+  document.getElementById('p3nt3').style.backgroundColor = "#773EBB"
+  document.getElementById('p3nt3').style.color = "#FFFFFF"  
+  document.getElementById('p3nt4').style.backgroundColor = "#773EBB"
+  document.getElementById('p3nt4').style.color = "#FFFFFF"  
+  el.style.backgroundColor = '#773EBB';
+  el.style.color = '#FFFFFF'; 
+  document.getElementById("pontgeral1").innerHTML= 5;
+  document.getElementById('evaluation_notapergunta3').value = 5;
+  document.getElementById("pontgeral1").innerHTML=((3 * document.getElementById('evaluation_notapergunta1').value) + 
+  (5 * document.getElementById('evaluation_notapergunta2').value) + (2 * document.getElementById('evaluation_notapergunta3').value)) / 10;  
+  if (document.getElementById('evaluation_notapergunta1').value>0 &&
+     document.getElementById('evaluation_notapergunta2').value>0 &&
+     document.getElementById('evaluation_notapergunta3').value>0)
+  {
+  document.getElementsByName("commit")[0].disabled = false; 
+  }
+ } 
+}
+
+
+
+
+function myFunction1() {
+  alert("I am an alert box!");
+}
+
+$('document').ready(function() {
+  var parametro=<%=params[:other]%>;
+  if (parametro==1111000){
+   var x = document.getElementsByClassName("textarea");
+   x[0].disabled = true;     
+  }
+  if (document.getElementById('evaluation_notapergunta1').value == 1.0) {
+    document.getElementById('p1nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt1').style.color = "#FFFFFF" ;    
+    document.getElementById('p1nt2').style.backgroundColor = "white";
+    document.getElementById('p1nt2').style.color = "black"; 
+    document.getElementById('p1nt3').style.backgroundColor = "white";
+    document.getElementById('p1nt3').style.color = "black";  
+    document.getElementById('p1nt4').style.backgroundColor = "white";
+    document.getElementById('p1nt4').style.color = "black";  
+    document.getElementById('p1nt5').style.backgroundColor = "white";
+    document.getElementById('p1nt5').style.color = "black";    
+     }
+      else if (document.getElementById('evaluation_notapergunta1').value == 2.0)
+     {
+    document.getElementById('p1nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt1').style.color = "#FFFFFF";     
+    document.getElementById('p1nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p1nt3').style.backgroundColor = "white";
+    document.getElementById('p1nt3').style.color = "black";  
+    document.getElementById('p1nt4').style.backgroundColor = "white";
+    document.getElementById('p1nt4').style.color = "black";  
+    document.getElementById('p1nt5').style.backgroundColor = "white";
+    document.getElementById('p1nt5').style.color = "black"; 
+     }
+      else if (document.getElementById('evaluation_notapergunta1').value == 3.0)
+     {
+    document.getElementById('p1nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt1').style.color = "#FFFFFF";     
+    document.getElementById('p1nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p1nt3').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt3').style.color = "#FFFFFF";  
+    document.getElementById('p1nt4').style.backgroundColor = "white";
+    document.getElementById('p1nt4').style.color = "black";  
+    document.getElementById('p1nt5').style.backgroundColor = "white";
+    document.getElementById('p1nt5').style.color = "black"; 
+     }
+      else if (document.getElementById('evaluation_notapergunta1').value == 4.0)
+     {
+    document.getElementById('p1nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt1').style.color = "#FFFFFF";     
+    document.getElementById('p1nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p1nt3').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt3').style.color = "#FFFFFF";  
+    document.getElementById('p1nt4').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt4').style.color = "#FFFFFF";  
+    document.getElementById('p1nt5').style.backgroundColor = "white";
+    document.getElementById('p1nt5').style.color = "black"; 
+     }
+      else if (document.getElementById('evaluation_notapergunta1').value == 5.0)
+     {
+    document.getElementById('p1nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt1').style.color = "#FFFFFF";     
+    document.getElementById('p1nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p1nt3').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt3').style.color = "#FFFFFF";  
+    document.getElementById('p1nt4').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt4').style.color = "#FFFFFF";  
+    document.getElementById('p1nt5').style.backgroundColor = "#773EBB";
+    document.getElementById('p1nt5').style.color = "#FFFFFF";
+     }     
+    
+    
+    if (document.getElementById('evaluation_notapergunta2').value == 1.0) {
+    document.getElementById('p2nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt1').style.color = "#FFFFFF" ;    
+    document.getElementById('p2nt2').style.backgroundColor = "white";
+    document.getElementById('p2nt2').style.color = "black"; 
+    document.getElementById('p2nt3').style.backgroundColor = "white";
+    document.getElementById('p2nt3').style.color = "black";  
+    document.getElementById('p2nt4').style.backgroundColor = "white";
+    document.getElementById('p2nt4').style.color = "black";  
+    document.getElementById('p2nt5').style.backgroundColor = "white";
+    document.getElementById('p2nt5').style.color = "black";    
+     }
+      else if (document.getElementById('evaluation_notapergunta2').value == 2.0)
+     {
+    document.getElementById('p2nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt1').style.color = "#FFFFFF";     
+    document.getElementById('p2nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p2nt3').style.backgroundColor = "white";
+    document.getElementById('p2nt3').style.color = "black";  
+    document.getElementById('p2nt4').style.backgroundColor = "white";
+    document.getElementById('p2nt4').style.color = "black";  
+    document.getElementById('p2nt5').style.backgroundColor = "white";
+    document.getElementById('p2nt5').style.color = "black"; 
+     }
+      else if (document.getElementById('evaluation_notapergunta2').value == 3.0)
+     {
+    document.getElementById('p2nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt1').style.color = "#FFFFFF";     
+    document.getElementById('p2nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p2nt3').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt3').style.color = "#FFFFFF";  
+    document.getElementById('p2nt4').style.backgroundColor = "white";
+    document.getElementById('p2nt4').style.color = "black";  
+    document.getElementById('p2nt5').style.backgroundColor = "white";
+    document.getElementById('p2nt5').style.color = "black"; 
+     }
+      else if (document.getElementById('evaluation_notapergunta2').value == 4.0)
+     {
+    document.getElementById('p2nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt1').style.color = "#FFFFFF";     
+    document.getElementById('p2nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p2nt3').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt3').style.color = "#FFFFFF";  
+    document.getElementById('p2nt4').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt4').style.color = "#FFFFFF";  
+    document.getElementById('p2nt5').style.backgroundColor = "white";
+    document.getElementById('p2nt5').style.color = "black"; 
+     }
+      else if (document.getElementById('evaluation_notapergunta2').value == 5.0)
+     {
+    document.getElementById('p2nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt1').style.color = "#FFFFFF";     
+    document.getElementById('p2nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p2nt3').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt3').style.color = "#FFFFFF";  
+    document.getElementById('p2nt4').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt4').style.color = "#FFFFFF";  
+    document.getElementById('p2nt5').style.backgroundColor = "#773EBB";
+    document.getElementById('p2nt5').style.color = "#FFFFFF";
+     }
+
+    if (document.getElementById('evaluation_notapergunta3').value == 1.0) {
+    document.getElementById('p3nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt1').style.color = "#FFFFFF" ;    
+    document.getElementById('p3nt2').style.backgroundColor = "white";
+    document.getElementById('p3nt2').style.color = "black"; 
+    document.getElementById('p3nt3').style.backgroundColor = "white";
+    document.getElementById('p3nt3').style.color = "black";  
+    document.getElementById('p3nt4').style.backgroundColor = "white";
+    document.getElementById('p3nt4').style.color = "black";  
+    document.getElementById('p3nt5').style.backgroundColor = "white";
+    document.getElementById('p3nt5').style.color = "black";    
+     }
+      else if (document.getElementById('evaluation_notapergunta3').value == 2.0)
+     {
+    document.getElementById('p3nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt1').style.color = "#FFFFFF";     
+    document.getElementById('p3nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p3nt3').style.backgroundColor = "white";
+    document.getElementById('p3nt3').style.color = "black";  
+    document.getElementById('p3nt4').style.backgroundColor = "white";
+    document.getElementById('p3nt4').style.color = "black";  
+    document.getElementById('p3nt5').style.backgroundColor = "white";
+    document.getElementById('p3nt5').style.color = "black"; 
+     }
+      else if (document.getElementById('evaluation_notapergunta3').value == 3.0)
+     {
+    document.getElementById('p3nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt1').style.color = "#FFFFFF";     
+    document.getElementById('p3nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p3nt3').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt3').style.color = "#FFFFFF";  
+    document.getElementById('p3nt4').style.backgroundColor = "white";
+    document.getElementById('p3nt4').style.color = "black";  
+    document.getElementById('p3nt5').style.backgroundColor = "white";
+    document.getElementById('p3nt5').style.color = "black"; 
+     }
+      else if (document.getElementById('evaluation_notapergunta3').value == 4.0)
+     {
+    document.getElementById('p3nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt1').style.color = "#FFFFFF";     
+    document.getElementById('p3nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p3nt3').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt3').style.color = "#FFFFFF";  
+    document.getElementById('p3nt4').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt4').style.color = "#FFFFFF";  
+    document.getElementById('p3nt5').style.backgroundColor = "white";
+    document.getElementById('p3nt5').style.color = "black"; 
+     }
+      else if (document.getElementById('evaluation_notapergunta3').value == 5.0)
+     {
+    document.getElementById('p3nt1').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt1').style.color = "#FFFFFF";     
+    document.getElementById('p3nt2').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt2').style.color = "#FFFFFF"; 
+    document.getElementById('p3nt3').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt3').style.color = "#FFFFFF";  
+    document.getElementById('p3nt4').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt4').style.color = "#FFFFFF";  
+    document.getElementById('p3nt5').style.backgroundColor = "#773EBB";
+    document.getElementById('p3nt5').style.color = "#FFFFFF";
+     }
+     
+
+
+ 
+});
+
+</script>
+
+
+
+

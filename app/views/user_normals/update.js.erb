@@ -1,0 +1,9 @@
+var qtdErrors = <%= @user_normal.errors.count%>
+if (qtdErrors>0){
+ $.notify("Ocorreu um erro!", "error");
+}else {
+ $.notify("Atualizado com Sucesso!","sucess");
+   setTimeout(function(){
+    window.location.replace("/user_normals");
+   },1000);
+ }

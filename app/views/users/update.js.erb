@@ -1,0 +1,13 @@
+var qtdErrors = <%= @user.errors.count%>
+if (qtdErrors>0){
+ $.notify("Ocorreu um erro!", "error");
+}else {
+ swal("User Salvo com Sucesso!", "Clique no botão!", "success")
+   setTimeout(function(){
+    window.location.replace("/users");
+   },3000);
+ }
+ 
+ 
+ 
+ 

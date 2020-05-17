@@ -1,0 +1,51 @@
+<%= yield :head %>
+<%= form_for @state, :html => { :class => "form-horizontal form-bordered", 'data-toggle' => "validator" } do |f| %>
+<div class="container is-widescreen">
+  <div class="notification">
+<label class="label">DADOS GERAIS</label>    
+
+</br>
+
+
+  <label class="label"><%= f.label :name %></label>
+  <div class ='form-control'>
+   <%= f.text_field :name, :class => 'input' ,'required' => 'true','data-minlength'=>'3', 
+   'data-error' => "Ops. Nome inválido ou muito pequeno. " %>
+  </div>
+  </br>  
+  
+                      
+  
+  <label class="label"><%= f.label :region %></label>
+  <div class="form-group">
+   <%= f.select(:region, State.regions.keys.map {|region| [region.titleize,region]},{include_blank: false}, :class => 'form-control' )%>
+  </div>
+  </br> 
+  
+  
+  <label class="label"><%= f.label :sigla %></label>
+  <div class ='form-control'>
+   <%= f.text_field :sigla, :class => 'form-control' %>
+  </div>
+  </br>   
+  
+<div class="field is-grouped">
+  <p class="control">
+    <%= f.submit nil, :class => 'button is-primary' %>    
+  </p>
+  <p class="control">
+    <a href="/states" class="button is-info">
+      Cancel
+    </a>
+  </p>
+</div>
+  
+  
+  
+  
+  
+  
+  </div>
+</div>
+<% end %>
+
