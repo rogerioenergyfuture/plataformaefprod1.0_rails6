@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-
+gem 'uglifier', '~> 4.2'
 gem "devise", ">= 4.6.0"
 gem 'rails-assets-bulma', source: 'https://rails-assets.org'
 gem 'bulma', '~> 0.1.0'
